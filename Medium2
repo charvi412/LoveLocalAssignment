@@ -1,1 +1,58 @@
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
+vector<int> majorityElements(const vector<int>& nums) {
+    unordered_map<int, int> countMap;
+
+    // Count occurrences of each number
+    for (int num : nums) {
+        countMap[num]++;
+    }
+
+    vector<int> result;
+    int threshold = nums.size() / 3;
+
+    // Check for elements with counts greater than ⌊ n/3 ⌋
+    for (const auto& entry : countMap) {
+        if (entry.second > threshold) {
+            result.push_back(entry.first);
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    vector<int> nums;
+
+    // Input your own array
+    int size;
+    cout << "Enter the size of the array: ";
+    cin >> size;
+
+    cout << "Enter the elements of the array:\n";
+    for (int i = 0; i < size; ++i) {
+        int num;
+        cin >> num;
+        nums.push_back(num);
+    }
+
+    vector<int> result = majorityElements(nums);
+
+    // Output the result
+    if (result.empty()) {
+        cout << "No elements found that appear more than ⌊ n/3 ⌋ times.\n";
+    } else {
+        cout << "Elements that appear more than ⌊ n/3 ⌋ times: ";
+        for (int num : result) {
+            cout << num << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
 
