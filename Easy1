@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+
+int calculateLastWordLength(const std::string& inputString) {
+    int wordLength = 0;
+    int index = inputString.length() - 1;
+
+    // Skip trailing spaces
+    while (index >= 0 && inputString[index] == ' ') {
+        index--;
+    }
+
+    // Count the length of the last word
+    while (index >= 0 && inputString[index] != ' ') {
+        wordLength++;
+        index--;
+    }
+
+    return wordLength;
+}
+
+int main() {
+    std::string userString;
+    std::cout << "Enter a string: ";
+    std::getline(std::cin, userString);
+
+    int lastWordLength = calculateLastWordLength(userString);
+    std::cout << "Length of the last word: " << lastWordLength << std::endl;
+
+    return 0;
+}
